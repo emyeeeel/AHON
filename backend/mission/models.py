@@ -23,8 +23,6 @@ class Victim(models.Model):
     person_recognition_confidence = models.FloatField()
     bounding_box = models.JSONField()  # Assuming bounding box is stored as a JSON object
     coco_keypoints = models.JSONField()  # Assuming COCO keypoints are stored as a JSON object
-    movement_category = models.CharField(max_length=50, blank=True, null=True, default='Mobile')
-    condition = models.CharField(max_length=50, blank=True, null=True, default='Unknown')
     estimated_longitude = models.FloatField(blank=True, null=True, default=0.0)
     estimated_latitude = models.FloatField(blank=True, null=True, default=0.0)
 

@@ -1,10 +1,11 @@
 from django.http import Http404
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
 import datetime
+from backend.mission.models import Mission
+from backend.mission.serializers import MissionSerializer
 
 
 class MissionList(APIView):
@@ -58,7 +59,7 @@ class MissionDetail(APIView):
             #2. Extract data from PUT request
             date_time_ended = request.data.get('date_time_ended')
             
-            #3. Update the mission object
+            #3. Update the mission object's date_time_ended field
             mission.date_time_ended = date_time_ended
             mission.save()
 
