@@ -16,7 +16,7 @@
     top: 15px;
     right: 20px;
     height: 75%;
-    width: 20%;
+    min-width: 325px;
     background-color: rgba(22, 27, 34, 0.95);
     padding: 20px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
@@ -115,15 +115,28 @@
     padding: 30px 15px;
     color: #8b949e;
     font-style: italic;
-    background-color: #21262d;
+    // background-color: #21262d;
     border-radius: 8px;
   }
   
-  app-nav-bar {
+  .navigation {
     position: absolute;
     bottom: 40px;
     right: 20px;
     z-index: 200; 
-    width: 22.75%;
+    border-radius: 15px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(22, 27, 34, 0.95);
+    min-height: 70px;
+    min-width: 325px;
+    padding: 0 20px;
+  }
+
+  .navigation app-nav-bar {
+    width: 100%;
+    display: block;
   }
   

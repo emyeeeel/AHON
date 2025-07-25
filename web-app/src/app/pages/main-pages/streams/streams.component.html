@@ -1,1 +1,100 @@
-<p>streams works!</p>
+<div class="page-container">
+    <div class="col-1">
+      <div class="current-live">
+        <div class="live-indicator">
+          <span class="status-circle"></span>
+          <span class="status-text">Current Stream</span>
+        </div>
+      </div>
+  
+      <div class="livestream">
+        <div class="selected-stream" *ngIf="selectedDevice">
+          <img
+            [src]="getLiveStreamUrl()"
+            class="main-stream-video"
+            alt="Live Device Stream"
+            style="width: 100%; height: auto; object-fit: cover;"
+          >
+        </div>
+  
+        <div class="no-stream-message" *ngIf="!selectedDevice">
+          No stream selected. Please select a stream from the list.
+        </div>
+      </div>
+  
+      <div class="device-details" *ngIf="selectedDevice">
+        <div class="details-header">
+          <h3>Device #{{ selectedDevice.id }} Details</h3>
+          <span class="status-badge" [class.active]="selectedDevice.is_active">
+            {{ selectedDevice.is_active ? 'ACTIVE' : 'INACTIVE' }}
+          </span>
+        </div>
+  
+        <div class="details-content">
+          <div class="detail-item">
+            <div class="detail-label">Location</div>
+            <div class="detail-value">{{ formatCoordinates(selectedDevice.location.lat, selectedDevice.location.lon) }}</div>
+          </div>
+  
+          <div class="detail-item">
+            <div class="detail-label">Camera Radius</div>
+            <div class="detail-value">{{ selectedDevice.camera_radius.actual_radius }}m (displayed: {{ selectedDevice.camera_radius.display_radius }}m)</div>
+          </div>
+  
+          <div class="detail-item">
+            <div class="detail-label">Stream Number</div>
+            <div class="detail-value">Stream #{{ selectedStreamNumber }}</div>
+          </div>
+  
+          <div class="detail-item">
+            <div class="detail-label">Last Updated</div>
+            <div class="detail-value">{{ selectedDevice.timestamp | date: 'medium' }}</div>
+          </div>
+        </div>
+  
+        <div class="details-actions">
+          <button class="action-btn primary">View on Map</button>
+          <button class="action-btn">Download Data</button>
+        </div>
+      </div>
+  
+      <div class="device-details no-selection" *ngIf="!selectedDevice">
+        <div class="no-selection-message">
+          <div class="icon">📡</div>
+          <div class="message">Select a device stream to view details</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-2">
+      <div class="stream-list">
+        <span class="status-circle"></span>
+        <span class="status-text">Live Stream</span>
+      </div>
+  
+      <div class="video-list">
+        <div class="videos">
+          <div *ngIf="devices.length === 0" class="no-devices-message">
+            No device feeds available
+          </div>
+  
+          <app-thumbnail
+            *ngFor="let device of devices; let i = index"
+            [deviceId]="device.id"
+            [location]="formatCoordinates(device.location.lat, device.location.lon)"
+            [isActive]="device.is_active"
+            [streamNumber]="i + 1"
+            [isSelected]="selectedDevice?.id === device.id"
+            (select)="selectDevice(device, i + 1)">
+          </app-thumbnail>
+        </div>
+  
+        <div class="button"></div>
+      </div>
+  
+      <div class="navigation">
+        <app-nav-bar/>
+      </div>
+    </div>
+  </div>
+  

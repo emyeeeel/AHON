@@ -1,0 +1,27 @@
+<div class="thumbnail-container" 
+     [class.inactive]="!isActive" 
+     [class.selected]="isSelected"
+     (click)="onSelect()">
+     
+  <img
+    class="thumbnail-img"
+    *ngIf="thumbnailUrl"
+    [src]="thumbnailUrl"
+    alt="Device Footage"
+  />
+  
+  <div class="thumbnail-overlay">
+    <div class="live-number">Stream #{{ streamNumber }}</div>
+    
+    <div class="live-details">
+      <div class="device-id">Device ID: {{ deviceId }}</div>
+      <div class="device-location">Location: {{ location }}</div>
+      <div class="device-status">Status: {{ isActive ? 'Active' : 'Inactive' }}</div>
+    </div>
+  </div>
+  
+  <div class="live-badge" *ngIf="isActive">
+    <span class="indicator-dot"></span>
+    LIVE
+  </div>
+</div>

@@ -7,7 +7,7 @@
       <h2>Device Details</h2>
   
       <div *ngIf="devices.length === 0" class="no-devices-message">
-        No devices available. Please add devices through the API.
+        No active devices available.
       </div>
   
       <div *ngFor="let device of devices" class="detail-card" [class.inactive]="!device.is_active">
@@ -19,6 +19,8 @@
       </div>
     </div>
   
-    <app-nav-bar/>
+    <div class="navigation">
+      <app-nav-bar/>
+    </div>
   </div>
   
