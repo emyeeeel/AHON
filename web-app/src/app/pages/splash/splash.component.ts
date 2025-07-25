@@ -13,11 +13,11 @@ export class SplashComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.isVisible = false;
-      
+      this.isVisible = false; // triggers fade-out
+  
       setTimeout(() => {
-        this.router.navigate(['/login']);
-      }, 500);
-    }, 2500);
+        this.router.navigateByUrl('/login');
+      }, 500); // matches CSS transition time
+    }, 2000); // splash display duration
   }
 }
