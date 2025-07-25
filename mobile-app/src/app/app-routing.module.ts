@@ -18,7 +18,15 @@ const routes: Routes = [
   {
     path: 'splash',
     loadChildren: () => import('./pages/splash/splash.module').then( m => m.SplashPageModule)
+  },  {
+    path: 'login',
+    loadChildren: () => import('./pages/auth/login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'signup',
+    loadChildren: () => import('./pages/auth/signup/signup.module').then( m => m.SignupPageModule)
+  },
+
 
 ];
 

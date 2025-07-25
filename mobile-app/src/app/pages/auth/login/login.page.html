@@ -1,0 +1,50 @@
+<ion-content class="auth-content">
+  <div class="auth-container">
+    <!-- Logo Section -->
+    <div class="logo-section">
+      <img src="assets/icon/ahon-logo.png" alt="AHON Logo" class="auth-logo">
+      <!-- <h1 class="app-title">AHON</h1>
+      <p class="app-subtitle">Thermal Human Detection</p> -->
+    </div>
+
+    <!-- Login Form -->
+    <div class="form-section">
+      <h2 class="form-title">Welcome Back</h2>
+      
+      <ion-item class="auth-input">
+        <ion-icon name="mail-outline" slot="start"></ion-icon>
+        <ion-input
+          type="email"
+          placeholder="Email"
+          [(ngModel)]="email"
+          fill="outline">
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="auth-input">
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+        <ion-input
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="password"
+          fill="outline">
+        </ion-input>
+      </ion-item>
+
+      <ion-button
+        expand="block"
+        class="auth-button"
+        (click)="onLogin()">
+        <ion-icon name="log-in-outline" slot="start"></ion-icon>
+        Sign In
+      </ion-button>
+
+      <div class="auth-links">
+        <p class="signup-text">
+          Don't have an account? 
+          <span class="link-text" (click)="goToSignUp()">Sign up</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</ion-content>
