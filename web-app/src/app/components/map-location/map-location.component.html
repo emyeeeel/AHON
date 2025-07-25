@@ -1,0 +1,46 @@
+<div class="device-map-container">
+    <div class="map-wrapper">
+      <!-- Fullscreen map -->
+      <div id="map" class="map"></div>
+  
+      <!-- Floating legend box -->
+      <div class="legend-box">
+        <div class="legend-title"><strong>Legend:</strong></div>
+        <div class="legend-item">
+          <span class="legend-icon">📍</span>
+          <span class="legend-text device-text">Active Device</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-icon">📌</span>
+          <span class="legend-text device-text">Inactive Device</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-icon circle-icon"></span>
+          <span class="legend-text">Camera Radius</span>
+        </div>
+      </div>
+  
+      <!-- Status panel -->
+      <div class="status-panel">
+        <div class="status-info">
+          <span class="status-label">Status:</span>
+          <span class="status-text" [class.error]="loadingError">{{ loadingStatus }}</span>
+        </div>
+        <div class="error-message" *ngIf="loadingError">{{ loadingError }}</div>
+        <button class="refresh-btn" (click)="refreshDevices()">
+          🔄 Refresh Devices
+        </button>
+      </div>
+  
+      <!-- Device list panel -->
+      <div class="device-list-panel" *ngIf="devices.length > 0">
+        <h3>Devices ({{ devices.length }})</h3>
+        <ul>
+          <li *ngFor="let device of devices" [class.inactive]="!device.is_active">
+            #{{ device.id }} - {{ device.is_active ? 'Active' : 'Inactive' }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
