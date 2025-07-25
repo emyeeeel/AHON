@@ -9,17 +9,8 @@ class Mission(models.Model):
         return f"Mission ID: {self.id}"
     
 
-class Detection(models.Model):
-    mission = models.ForeignKey(Mission, on_delete=models.CASCADE)
-    timestamp = models.DateTimeField(auto_now_add=True)
-    snapshot = models.ImageField(upload_to = "snapshots/", blank=True, null=True)
-
-    def __str__(self):
-        return f"Detection ID: {self.id} for Mission ID: {self.mission.id}"
-    
-
 class Victim(models.Model):
-    detection = models.ForeignKey(Detection, on_delete=models.CASCADE)
+    mission = models.ForeignKey(Mission, on_delete=models.CASCADE)
     person_recognition_confidence = models.FloatField()
     bounding_box = models.JSONField()  # Assuming bounding box is stored as a JSON object
     coco_keypoints = models.JSONField()  # Assuming COCO keypoints are stored as a JSON object
