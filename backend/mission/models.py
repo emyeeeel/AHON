@@ -1,3 +1,21 @@
 from django.db import models
 
-# Create your models here.
+
+class Mission(models.Model):
+    date_time_started = models.DateTimeField()
+    date_time_ended = models.DateTimeField(blank=True, null=True)
+    
+    def __str__(self):
+        return f"Mission ID: {self.id}"
+    
+
+class Victim(models.Model):
+    mission = models.ForeignKey(Mission, on_delete=models.CASCADE)
+    person_recognition_confidence = models.FloatField()
+    bounding_box = models.JSONField()  # Assuming bounding box is stored as a JSON object
+    coco_keypoints = models.JSONField()  # Assuming COCO keypoints are stored as a JSON object
+    estimated_longitude = models.FloatField(blank=True, null=True, default=0.0)
+    estimated_latitude = models.FloatField(blank=True, null=True, default=0.0)
+
+    def __str__(self):
+        return f"Victim ID: {self.id} for Detection ID: {self.detection.id}"
