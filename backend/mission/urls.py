@@ -16,6 +16,5 @@ from backend.mission.model_views.victim_views import AllVictimsView, VictimDetai
     path('mission/<int:mission_id>/victims/', VictimsByMissionView.as_view(), name='victims-by-mission'),
     path('victims/', AllVictimsView.as_view(), name='all-victims'),
     path('victim/<int:pk>/', VictimDetailView.as_view(), name='victim-detail'),
-
 ]
 
