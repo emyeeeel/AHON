@@ -1,0 +1,25 @@
+<ion-tabs (ionTabsDidChange)="getSelected($event)">
+  <ion-tab-bar class="py-2" slot="bottom">
+
+    <ion-tab-button tab="stream">
+      <ion-icon [name]="selectedTab() == 'stream' ? 'aperture' : 'aperture-outline'"></ion-icon>
+      <ion-label [class]="selectedTab() == 'stream' ? 'pt-1 text-on' : 'pt-1 text-off'">Stream</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="victims">
+      <ion-icon [name]="selectedTab() == 'victims' ? 'people-circle' : 'people-circle-outline'"></ion-icon>
+      <ion-label [class]="selectedTab() == 'victims' ? 'pt-1 text-on' : 'pt-1 text-off'">Victims</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="history">
+      <ion-icon [name]="selectedTab() == 'history' ? 'time' : 'time-outline'"></ion-icon>
+      <ion-label [class]="selectedTab() == 'history' ? 'pt-1 text-on' : 'pt-1 text-off'">History</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="settings">
+      <ion-icon [name]="selectedTab() == 'settings' ? 'settings' : 'settings-outline'"></ion-icon>
+      <ion-label [class]="selectedTab() == 'settings' ? 'pt-1 text-on' : 'pt-1 text-off'">Settings</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-tabs>
