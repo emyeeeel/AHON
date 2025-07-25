@@ -5,7 +5,7 @@ from rest_framework import status
 from PIL import Image
 from io import BytesIO
 import os
-import time
+from django.conf import settings
 
 class ImageStreamView(APIView):
     """
@@ -16,9 +16,13 @@ class ImageStreamView(APIView):
         """Generator function that yields image frames"""
         while True:
             try:
+                # Dynamic paths to the images
+                image_path = os.path.join(settings.BASE_DIR, 'image.jpg')
+                placeholder_path = os.path.join(settings.BASE_DIR, 'placeholder.jpg')
+
                 # Try to read the main image
-                if os.path.exists("image.jpg"):
-                    with open("image.jpg", "rb") as f:
+                if os.path.exists(image_path):
+                    with open(image_path, "rb") as f:
                         image_bytes = f.read()
                 else:
                     raise FileNotFoundError("image.jpg not found")
@@ -37,7 +41,7 @@ class ImageStreamView(APIView):
                 print(f"Error streaming image: {e}")
                 # Fallback to placeholder image
                 try:
-                    with open("placeholder.jpg", "rb") as f:
+                    with open(placeholder_path, "rb") as f:
                         image_bytes = f.read()
 
                     image = Image.open(BytesIO(image_bytes))
@@ -71,13 +75,16 @@ class ImageStatusView(APIView):
     def get(self, request):
         """Get status of current image"""
         try:
-            if os.path.exists("image.jpg"):
+            # Dynamic paths to the images
+            image_path = os.path.join(settings.BASE_DIR, 'image.jpg')
+
+            if os.path.exists(image_path):
                 # Get file size
-                file_size = os.path.getsize("image.jpg")
+                file_size = os.path.getsize(image_path)
 
                 # Try to get image dimensions
                 try:
-                    with open("image.jpg", "rb") as f:
+                    with open(image_path, "rb") as f:
                         image = Image.open(f)
                         width, height = image.size
 
