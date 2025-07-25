@@ -25,7 +25,21 @@ SECRET_KEY = "django-insecure-)g-db5=_=ej%fnqj@jl7t!5nzw=5n*b_xnijna^53(!)2wdsvu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*',
+    '192.168.1.4'
+]
+CORS_ALLOW_ALL_ORIGINS = True 
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://*",  # Allow all origins
+    "http://localhost:8100",  # Ionic dev server
+    'http://192.168.1.4',
+    "http://192.168.1.4:8100",  # Your local IP
+    "http://10.0.2.2:8100",  # Android emulator dev server
+    "http://10.0.2.2",  # Android emulator dev server
+]
+
 
 
 # Application definition
@@ -37,9 +51,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'detection',
+    'locator',
+    'mission',
+    'stream',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
