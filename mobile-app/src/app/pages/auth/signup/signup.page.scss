@@ -1,0 +1,103 @@
+.auth-content {
+  --background: #111827;
+  --color: white;
+}
+
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  .auth-logo {
+    width: 200px; // Matching login page size
+    height: 100px; // Matching login page size
+    border-radius: 20%;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .app-title {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .app-subtitle {
+    color: #9CA3AF;
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+.form-section {
+  width: 100%;
+  max-width: 400px;
+
+  .form-title {
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+
+  .auth-input {
+    --background: #1F2937;
+    --color: white;
+    --border-color: #374151;
+    --highlight-color-focused: #16A34A;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+
+    ion-icon {
+      color: #9CA3AF;
+      margin-right: 8px;
+    }
+
+    ion-input {
+      --color: white;
+      --placeholder-color: #9CA3AF;
+    }
+  }
+
+  .auth-button {
+    --background: #16A34A;
+    --color: white;
+    font-weight: 600;
+    height: 48px;
+    margin: 2rem 0 1rem 0;
+    border-radius: 8px;
+    text-transform: none;
+
+    ion-icon {
+      margin-right: 8px;
+    }
+  }
+
+  .auth-links {
+    text-align: center;
+    margin-top: 1rem;
+
+    .login-text {
+      color: #9CA3AF;
+      margin: 0;
+
+      .link-text {
+        color: #16A34A;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+}
