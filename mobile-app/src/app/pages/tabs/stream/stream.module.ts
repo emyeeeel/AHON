@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { StreamPageRoutingModule } from './stream-routing.module';
 import { StreamPage } from './stream.page';
 import { HeaderComponent } from "src/app/components/header/header.component";
+import { MissionStreamComponent } from "src/app/components/mission-stream/mission-stream.component";
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { HeaderComponent } from "src/app/components/header/header.component";
     IonicModule,
     StreamPageRoutingModule,
     HeaderComponent,
+    MissionStreamComponent
   ],
   declarations: [StreamPage]
 })
