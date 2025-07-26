@@ -104,6 +104,7 @@ export class MapLocationComponent implements OnInit, OnDestroy  {
     
     this.devices.forEach(device => {
       const position = [device.location.lat, device.location.lon] as [number, number];
+      bounds.extend(position); 
       currentDeviceIds.add(device.id);
       
 
