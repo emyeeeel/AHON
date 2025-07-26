@@ -1,0 +1,111 @@
+ion-header.custom-header {
+    background-color: #1F2937;
+    --ion-background-color: #1F2937;
+    height: 15vh;
+
+
+    ion-toolbar {
+        --background: #1F2937;
+        background-color: #1F2937;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 0 16px;
+    }
+
+    .header-content {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5%;
+
+        .start-mission-button {
+            --background: #16A34A;
+            --color: white;
+            font-weight: normal;
+            border-radius: 8px;
+            width: 60%;
+
+            ion-icon {
+                font-size: 20px;
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        .end-mission-button {
+            --background: #DC2626;
+            --color: white;
+            font-weight: normal;
+            border-radius: 8px;
+
+            ion-icon {
+                font-size: 20px;
+            }
+        }
+
+        .people-count {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 12px;
+            background-color: #374151;
+            border-radius: 8px;
+            width: 20%;
+            height: 100%;
+
+            ion-icon {
+                font-size: 20px;
+                width: 20px;
+                height: 20px;
+            }
+
+            span {
+                font-size: 18px;
+                margin-left: 8px;
+            }
+        }
+
+        .mission-time {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #374151;
+            padding: 6px 12px;
+            border-radius: 8px; // Match people-count
+            color: white;
+
+            ion-icon {
+                font-size: 20px;
+                color: white;
+            }
+
+            span {
+                font-size: 18px;
+                color: white;
+            }
+        }
+    }
+}
+
+.start-mission-button {
+    padding: 9px 5px;
+    background-color: #16A34A !important;
+    color: white !important;
+}
+
+.end-mission-button {
+    padding: 9px 5px;
+    background-color: red !important;
+    color: white !important;
+}
+
+.start-mission-button ion-icon,
+.end-mission-button ion-icon {
+    color: white;
+    text-align: center;
+}

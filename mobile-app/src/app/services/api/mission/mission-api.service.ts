@@ -19,7 +19,6 @@ export class MissionApiService {
   // Updates the mission object with the end time (date_time_ended)
   updateMission(mission: any): Observable<any> {
     const body = { date_time_ended: mission.date_time_ended };
-
     return this.http.put(`${this.baseUrl}/mission/${mission.id}/`, body, { headers: this.httpHeaders });
   }
 

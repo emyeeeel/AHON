@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-victims',
   templateUrl: './victims.page.html',
   styleUrls: ['./victims.page.scss'],
+  standalone: false,
 })
 export class VictimsPage implements OnInit {
 

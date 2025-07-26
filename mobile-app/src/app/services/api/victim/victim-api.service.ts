@@ -15,8 +15,8 @@ export class VictimApiService {
     return this.http.post(`${this.baseUrl}/victims/`, victim, { headers: this.httpHeaders });
   }
 
-  updateVictims(victim: any) {
-    return this.http.put(`${this.baseUrl}/mission/${mission.id}/victims/`, mission, { headers: this.httpHeaders });
+  updateVictimsByMission(victims: any[]) {
+    return this.http.put(`${this.baseUrl}/mission/${victims[0].mission_id}/victims/`, victims, { headers: this.httpHeaders });
   }
 
   getVictimsByMission(missionId: number): Observable<any> {

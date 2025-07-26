@@ -5,8 +5,16 @@ import { MissionApiService } from './mission-api.service';
   providedIn: 'root'
 })
 export class MissionResponseService {
-
   constructor(private missionApiService: MissionApiService) { }
+
+  async createMission(mission: any): Promise<any> {
+    try {
+      const response = await this.missionApiService.createMission(mission).toPromise();
+      return response;
+    } catch (error) {
+      throw new Error('Failed to update detection model');
+    }
+  }
 
   async getAllMissions(): Promise<any> {
     try {
