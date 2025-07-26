@@ -1,0 +1,34 @@
+.ion-padding {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  
+  &.fade-out {
+    opacity: 0;
+  }
+}
+  
+  
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .centered-logo {
+    max-width: 60%;
+    height: auto;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: fadeScaleIn 1.5s forwards;
+  }
+  
+  @keyframes fadeScaleIn {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }

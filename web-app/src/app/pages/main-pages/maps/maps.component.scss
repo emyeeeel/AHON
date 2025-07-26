@@ -1,0 +1,142 @@
+:host {
+    display: block;
+    height: 100vh;
+  }
+  
+  .command-center {
+    position: relative;
+    height: 100%;
+    background-color: #0d1117;
+    font-family: "Segoe UI", sans-serif;
+    color: white;
+  }
+  
+  .details {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    height: 75%;
+    min-width: 325px;
+    background-color: rgba(22, 27, 34, 0.95);
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    border-radius: 15px;
+  }
+  
+  .maps {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1e1e2f;
+    z-index: 1;
+  }
+  
+  .maps app-map-location {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  
+  .details h2 {
+    color: #58a6ff;
+    margin-top: 0;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .detail-card {
+    background-color: #21262d;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.05);
+  
+    // Organize content in a grid
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 8px;
+  
+    // Prevent overflow
+    overflow-wrap: break-word;
+    word-break: break-word;
+  
+    // Style for labels
+    strong {
+      color: #8b949e;
+      font-weight: 600;
+      margin-right: 6px;
+    }
+  
+    // Style for values
+    span {
+      color: #c9d1d9;
+      display: block;
+      font-size: 0.95em;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  
+    // Status-specific styling
+    &.inactive {
+      opacity: 0.7;
+      background-color: #1c2026;
+  
+      strong, span {
+        color: #6e7681;
+      }
+    }
+  
+    // Add custom styling for the status indicator
+    .status-indicator {
+      display: inline-block;
+      height: 8px;
+      width: 8px;
+      border-radius: 50%;
+      margin-right: 5px;
+  
+      &.active {
+        background-color: #3fb950;
+      }
+  
+      &.inactive {
+        background-color: #8b949e;
+      }
+    }
+  }
+  
+  // Message for no devices
+  .no-devices-message {
+    text-align: center;
+    padding: 30px 15px;
+    color: #8b949e;
+    font-style: italic;
+    // background-color: #21262d;
+    border-radius: 8px;
+  }
+  
+  .navigation {
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+    z-index: 200; 
+    border-radius: 15px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(22, 27, 34, 0.95);
+    min-height: 70px;
+    min-width: 325px;
+    padding: 0 20px;
+  }
+
+  .navigation app-nav-bar {
+    width: 100%;
+    display: block;
+  }
+  

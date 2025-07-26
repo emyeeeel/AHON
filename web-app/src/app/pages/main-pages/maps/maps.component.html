@@ -1,0 +1,26 @@
+<div class="command-center">
+    <div class="maps">
+      <app-map-location></app-map-location> 
+    </div>
+  
+    <div class="details">
+      <h2>Device Details</h2>
+  
+      <div *ngIf="devices.length === 0" class="no-devices-message">
+        No active devices available.
+      </div>
+  
+      <div *ngFor="let device of devices" class="detail-card" [class.inactive]="!device.is_active">
+        <strong>ID:</strong> <span>#{{ device.id }}</span>
+        <strong>Location:</strong> <span>{{ formatCoordinates(device.location.lat, device.location.lon) }}</span>
+        <strong>Status:</strong> <span>{{ device.is_active ? 'Active' : 'Inactive' }}</span>
+        <strong>Radius:</strong> <span>{{ device.camera_radius.actual_radius }}m</span>
+        <strong>Updated:</strong> <span>{{ device.timestamp | date:'short' }}</span>
+      </div>
+    </div>
+  
+    <div class="navigation">
+      <app-nav-bar/>
+    </div>
+  </div>
+  

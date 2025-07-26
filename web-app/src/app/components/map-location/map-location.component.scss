@@ -1,0 +1,228 @@
+.device-map-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+.status-panel {
+  position: absolute;
+  bottom: 170px;
+  left: 30px;
+  background-color: rgba(22, 27, 34, 0.9);
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  max-width: 250px;
+  font-size: 0.9em;
+}
+
+.status-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.status-label {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.refresh-btn {
+  margin-top: 8px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #2ea043;
+  color: white;
+  cursor: pointer;
+  font-size: 0.85em;
+}
+
+.refresh-btn:hover {
+  background-color: #3fb950;
+}
+
+.error-message {
+  color: #f85149;
+  font-size: 0.85em;
+  margin: 5px 0;
+}
+
+/* Device icon styling */
+:host ::ng-deep .device-icon {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  text-align: center;
+  line-height: 30px;
+}
+
+/* Leaflet map styling */
+:host ::ng-deep .leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+:host ::ng-deep .leaflet-tooltip {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.fullscreen-map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.legend-box {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  width: 200px;
+  background-color: white;
+  border: 2px solid grey;
+  font-size: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.legend-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: black;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.legend-icon {
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.circle-icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-color: rgba(0, 0, 255, 0.3);
+  border: 2px solid blue;
+  border-radius: 50%;
+}
+
+.device-text {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.legend-text {
+  color: #333;
+  font-size: 12px;
+}
+
+.leaflet-control-attribution {
+  font-size: 10px;
+}
+
+.device-icon {
+  font-size: 24px;
+  text-align: center;
+}
+
+.person-icon {
+  font-size: 24px;
+  text-align: center;
+
+  &.green {
+    filter: hue-rotate(120deg);
+  }
+
+  &.gray {
+    filter: grayscale(100%);
+  }
+}
+
+/* Optional: Detection results styling */
+.detection-results-container {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.detection-results {
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #333;
+  }
+
+  p {
+    margin: 5px 0;
+  }
+
+  .detection-table {
+    margin-top: 10px;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th,
+      td {
+        padding: 5px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        border-bottom: 2px solid #ddd;
+      }
+    }
+  }
+
+  &.no-data {
+    font-style: italic;
+    color: #666;
+  }
+}

@@ -1,0 +1,17 @@
+<div class="nav-container">
+    <button
+      class="nav-button"
+      [ngClass]="{ active: currentRoute === '/streams' }"
+      (click)="goTo('/streams')"
+    >
+      Live Streams
+    </button>
+    <button
+      class="nav-button"
+      [ngClass]="{ active: currentRoute === '/maps' }"
+      (click)="goTo('/maps')"
+    >
+      Maps
+    </button>
+  </div>
+  
