@@ -17,7 +17,7 @@ export class ThumbnailComponent implements OnInit {
   @Output() select = new EventEmitter<void>();
   
 
-  readonly thumbnailUrl = 'https://7pd4fg47-8000.asse.devtunnels.ms/api/image/';
+  readonly thumbnailUrl = 'http://localhost:8000/api/image/';
 
   constructor(private deviceStreamService: DeviceStreamService) {}
 

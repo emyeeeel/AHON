@@ -8,8 +8,8 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class DeviceStreamService {
-  private readonly streamUrl = 'https://7pd4fg47-8000.asse.devtunnels.ms/api/stream/'; // change to backend API stream
-  private readonly imageUrl = 'https://7pd4fg47-8000.asse.devtunnels.ms/api/image/';  // for thumbnail
+  private readonly streamUrl = 'http://127.0.0.1:8000/api/stream/'; // change to backend API stream
+  private readonly imageUrl = 'http://127.0.0.1:8000/api/image/';  // for thumbnail
 
   private thumbnailCache: { [deviceId: number]: SafeUrl } = {};
 

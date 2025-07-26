@@ -1,4 +1,5 @@
-from django.http import StreamingHttpResponse
+import mimetypes
+from django.http import HttpResponse, StreamingHttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -113,3 +114,35 @@ class ImageStatusView(APIView):
                 'status': 'error',
                 'message': str(e)
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class SimpleImageView(APIView):
+    """
+    API View to serve the current image.jpg file directly
+    """
+    def get(self, request):
+        try:
+            # Check if image exists
+            if not os.path.exists("image.jpg"):
+                return Response(
+                    {"error": "Image not found"}, 
+                    status=status.HTTP_404_NOT_FOUND
+                )
+            
+            # Determine content type
+            content_type, _ = mimetypes.guess_type("image.jpg")
+            if content_type is None:
+                content_type = 'image/jpeg'
+            
+            # Read and return the image
+            with open("image.jpg", 'rb') as f:
+                image_data = f.read()
+            
+            response = HttpResponse(image_data, content_type=content_type)
+            response['Content-Disposition'] = 'inline; filename="image.jpg"'
+            return response
+            
+        except Exception as e:
+            return Response(
+                {"error": f"An error occurred: {str(e)}"}, 
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
