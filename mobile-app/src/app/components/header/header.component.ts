@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { interval, Subscription } from 'rxjs';
@@ -8,18 +8,22 @@ import { MissionApiService } from 'src/app/services/api/mission/mission-api.serv
 import { MissionStateService } from 'src/app/services/state/mission/mission-state.service';
 import { VictimApiService } from 'src/app/services/api/victim/victim-api.service';
 import { VictimStateService } from 'src/app/services/state/victim/victim-state.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   imports: [CommonModule, IonicModule],
+  standalone: true
 })
-export class HeaderComponent implements OnInit {
+
+export class HeaderComponent implements OnInit, OnDestroy {
   // mission-timer variables
   formattedTime = '00:00';
   missionStarted = false;
 
   // mission-state variables
+  private missionSub!: Subscription;
   currentMission: any;
   currentMissionData: any;
 
@@ -32,6 +36,7 @@ export class HeaderComponent implements OnInit {
 
   ) { }
 
+
   ngOnInit() {
     this.missionTimerService.missionStarted$.subscribe(started => {
       this.missionStarted = started;
@@ -41,9 +46,13 @@ export class HeaderComponent implements OnInit {
       this.formattedTime = time;
     });
 
-    this.missionStateService.currentMission$.subscribe(mission => {
+    this.missionSub = this.missionStateService.currentMission$.subscribe(mission => {
       this.currentMission = mission;
     });
+  }
+
+  ngOnDestroy() {
+    this.missionSub.unsubscribe();
   }
 
   async startMission() {

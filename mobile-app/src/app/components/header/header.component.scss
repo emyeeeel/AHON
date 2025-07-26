@@ -1,7 +1,7 @@
-ion-header.custom-header {
+.custom-header {
     background-color: #1F2937;
     --ion-background-color: #1F2937;
-    height: 15vh;
+    height: 12vh;
 
 
     ion-toolbar {
@@ -9,10 +9,11 @@ ion-header.custom-header {
         background-color: #1F2937;
 
         display: flex;
-        align-items: center;
+        align-items: end;
         justify-content: center;
         height: 100%;
         padding: 0 16px;
+        padding-bottom: 15px;
     }
 
     .header-content {
@@ -108,4 +109,9 @@ ion-header.custom-header {
 .end-mission-button ion-icon {
     color: white;
     text-align: center;
+}
+
+ion-icon,
+span {
+    color: white;
 }

@@ -28,7 +28,7 @@ const config: CapacitorConfig = {
       'http://172.29.1.175:8000',
       'http://172.29.1.175:8000/*',
       'http://172.29.1.175:8000/api/*',
-      'http://172.29.1.175:8000/api/detection-stream',
+      'http://172.29.1.175:8000/api/stream/',
       'https://7pd4fg47-8000.asse.devtunnels.ms',
       'https://7pd4fg47-8000.asse.devtunnels.ms/*',
       'https://7pd4fg47-8000.asse.devtunnels.ms/api/*',

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { IonButton, IonIcon } from "@ionic/angular/standalone";
+import { Subscription } from 'rxjs';
 
 import { ApiUrlsStateService } from 'src/app/services/state/api-urls/api-urls-state.service';
 import { MissionStateService } from 'src/app/services/state/mission/mission-state.service';
@@ -10,11 +10,12 @@ import { MissionStateService } from 'src/app/services/state/mission/mission-stat
   selector: 'app-mission-stream',
   templateUrl: './mission-stream.component.html',
   styleUrls: ['./mission-stream.component.scss'],
-  imports: [CommonModule, IonicModule],
+  imports: [IonIcon, IonButton],
   standalone: true
 })
 export class MissionStreamComponent implements OnInit, OnDestroy {
   // mission-state variables
+  private missionSub!: Subscription;
   currentMission: any;
 
   // victim-state variables
@@ -22,16 +23,16 @@ export class MissionStreamComponent implements OnInit, OnDestroy {
 
   // streaming variables
   isStreaming = false;
-  streamUrl: any = 'http://172.29.1.175:8000/api/stream/';
+  streamUrl: any;
   currentImageUrl = 'assets/placeholder.jpg';
 
   constructor(
     private apiUrlsStateService: ApiUrlsStateService,
     private missionStateService: MissionStateService,
   ) {
-    // this.streamUrl = this.apiUrlsStateService.streamUrl;
+    this.streamUrl = this.apiUrlsStateService.streamUrl;
 
-    this.missionStateService.currentMission$.subscribe(mission => {
+    this.missionSub = this.missionStateService.currentMission$.subscribe(mission => {
       this.currentMission = mission;
     });
   }
@@ -43,6 +44,7 @@ export class MissionStreamComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.stopStream();
+    this.missionSub.unsubscribe();
   }
 
   startStream() {
