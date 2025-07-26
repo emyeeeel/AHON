@@ -14,5 +14,8 @@ export class ApiUrlsStateService {
   // Stream API Url
   streamUrl: string = `${this.baseUrl}/stream/`;
 
+  // Mission Api Url
+  missionUrl: string = 'http://172.29.1.175:8000/mission-api';
+
   constructor() { }
 }

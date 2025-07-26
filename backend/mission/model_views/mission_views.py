@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status
 
 import datetime
-from backend.mission.models import Mission
-from backend.mission.serializers import MissionSerializer
+from mission.models import Mission
+from mission.serializers import MissionSerializer
 
 
 class MissionList(APIView):
@@ -20,7 +20,7 @@ class MissionList(APIView):
     def post(self, request, format=None):
         try:
             #1. Extract data
-            date_time_started = request.data.get('date_time_started', datetime.datetime.now())
+            date_time_started = datetime.datetime.now()
             date_time_ended = request.data.get('date_time_ended', None)
 
             #2. Create the Mission Object manually

@@ -2,14 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { ApiUrlsStateService } from '../../state/api-urls/api-urls-state.service';
 @Injectable({
   providedIn: 'root'
 })
 export class MissionApiService {
-  baseUrl = 'http://172.29.14.173:8000/api';
+  baseUrl: any;
   httpHeaders = { 'Content-Type': 'application/json' };
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private apiUrlsStateService: ApiUrlsStateService,
+    private http: HttpClient
+  ) {
+    this.baseUrl = this.apiUrlsStateService.missionUrl;
+  }
 
   createMission(mission: any): Observable<any> {
     const body = { date_time_started: mission.date_time_started };

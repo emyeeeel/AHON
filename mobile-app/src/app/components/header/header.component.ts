@@ -5,9 +5,9 @@ import { interval, Subscription } from 'rxjs';
 
 import { MissionTimerService } from 'src/app/services/components/mission-timer/mission-timer.service';
 import { MissionApiService } from 'src/app/services/api/mission/mission-api.service';
+import { MissionResponseService } from 'src/app/services/api/mission/mission-response.service';
 import { MissionStateService } from 'src/app/services/state/mission/mission-state.service';
-import { VictimApiService } from 'src/app/services/api/victim/victim-api.service';
-import { VictimStateService } from 'src/app/services/state/victim/victim-state.service';
+
 
 @Component({
   selector: 'app-header',
@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private missionTimerService: MissionTimerService,
     private missionApiService: MissionApiService,
+    private missionResponseService: MissionResponseService,
     private missionStateService: MissionStateService,
 
   ) { }
@@ -57,34 +58,50 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   async startMission() {
     this.missionTimerService.startMission();
-    this.createMission();
+    await this.createMission();
   }
 
-  endMission() {
+  async endMission() {
     this.missionTimerService.stopMission();
-    this.updateMission();
+    await this.updateMission();
   }
 
+
+  // async createMission() {
+  //   const mission = {
+  //     date_time_started: new Date().toISOString(), // Current time in ISO format
+  //   }
+
+  //   this.currentMissionData = await this.missionResponseService.createMission(mission);
+
+  //   // Set the current mission & isMissionOngoing = true in the Mission state service
+  //   this.missionStateService.setMission(this.currentMissionData);
+  //   this.missionStateService.toggleMissionStartEnd(true);
+  // }
 
   createMission() {
-    const mission = {
+    let mission = {
       date_time_started: new Date().toISOString(), // Current time in ISO format
     }
+    this.missionApiService.createMission(mission).subscribe(
+      data => {
+        this.currentMissionData = data;
 
-    this.currentMissionData = this.missionApiService.createMission(mission);
-
-    // Set the current mission & isMissionOngoing = true in the Mission state service
-    this.missionStateService.setMission(this.currentMissionData);
-    this.missionStateService.toggleMissionStartEnd(true);
+        // Set the current mission in the Mission state service
+        this.missionStateService.setMission(this.currentMissionData);
+        this.missionStateService.toggleMissionStartEnd(true);
+      },
+      error => { console.log('Error: ', error); }
+    );
   }
 
-  updateMission() {
+  async updateMission() {
     let mission = {
       id: this.currentMissionData.id,
       date_time_ended: new Date().toISOString(), // Current time in ISO format
     }
 
-    this.missionApiService.updateMission(mission);
+    await this.missionResponseService.updateMission(mission);
     this.missionStateService.toggleMissionStartEnd(false); // Set isMissionOngoing = false
   }
 

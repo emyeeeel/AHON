@@ -16,6 +16,15 @@ export class MissionResponseService {
     }
   }
 
+  async updateMission(mission: any): Promise<any> {
+    try {
+      const response = await this.missionApiService.updateMission(mission).toPromise();
+      return response;
+    } catch (error) {
+      throw new Error('Failed to update detection model');
+    }
+  }
+
   async getAllMissions(): Promise<any> {
     try {
       const response = await this.missionApiService.getAllMissions().toPromise();

@@ -15,10 +15,10 @@ export class StreamPage implements OnInit {
   currentMission: any;
 
   // input selection variables
-  currentInputType: 'image' | 'video' | 'stream' = 'stream';
+  currentInputType: 'stream' | 'stream-2' = 'stream';
 
   // stream variables
-  isStreamActive = false;
+  isStreamActive = true;
 
   constructor(
     private missionStateService: MissionStateService

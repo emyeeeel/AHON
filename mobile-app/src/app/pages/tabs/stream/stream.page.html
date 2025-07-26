@@ -21,15 +21,7 @@
     <div class="main-display">
       <!-- Stream Display -->
       <div class="stream-container" *ngIf="currentInputType === 'stream'">
-        <!-- <div class="stream-controls">
-          <ion-button 
-            fill="outline" 
-            (click)="toggleStreamType()"
-            class="stream-toggle-btn">
-            <ion-icon [name]="streamType === 'regular' ? 'eye-outline' : 'videocam-outline'" slot="start"></ion-icon>
-            {{ streamType === 'regular' ? 'Switch to Model POV' : 'Switch to Regular' }}
-          </ion-button>
-        </div> -->
+
         <div class="stream-display" *ngIf="isStreamActive">
           <div class="media-wrapper">
             <app-mission-stream ></app-mission-stream>

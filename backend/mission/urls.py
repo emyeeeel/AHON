@@ -2,11 +2,10 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 
-from backend.mission.model_views.mission_views import MissionDetail, MissionList
-from backend.mission.model_views.victim_views import AllVictimsView, VictimDetailView, VictimsByMissionView
+from mission.model_views.mission_views import MissionDetail, MissionList
+from mission.model_views.victim_views import AllVictimsView, VictimDetailView, VictimsByMissionView
 
-
-[
+urlpatterns = [
     # Mission URLs
     path('missions/', MissionList.as_view()),
     path('mission/<int:pk>/', MissionDetail.as_view()),
