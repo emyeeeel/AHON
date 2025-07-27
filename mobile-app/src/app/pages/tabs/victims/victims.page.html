@@ -1,13 +1,15 @@
 <app-header></app-header>
 
-<ion-content [fullscreen]="true">  
-    <!-- Debug view (remove this in production) -->
-     <!-- <p>{{currentMission | json}}</p>
-    <p>{{currentMission.id}}</p> -->
-    <!-- <div class="debug-section">
-      <h3>Raw Data (Debug):</h3>
-      <pre>{{ victimsWithDetections | json }}</pre>
-    </div> -->
+<ion-content [fullscreen]="true">
+  <app-victim-filter></app-victim-filter>  
+  
+  <!-- Debug view (remove this in production) -->
+    <!-- <p>{{currentMission | json}}</p>
+  <p>{{currentMission.id}}</p> -->
+  <!-- <div class="debug-section">
+    <h3>Raw Data (Debug):</h3>
+    <pre>{{ victimsWithDetections | json }}</pre>
+  </div> -->
 
   <!-- Victims list view -->
     <div  class="victims-container">

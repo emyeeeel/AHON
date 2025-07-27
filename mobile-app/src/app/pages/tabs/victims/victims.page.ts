@@ -16,7 +16,7 @@ export class VictimsPage implements OnInit {
       person_recognition_confidence: 0.68,
     },
     {
-      id: 203,
+      id: 204,
       estimated_latitude: 10.2925,
       estimated_longitude: 123.8615,
       date_time_detected: "2025-07-27T14:30:00Z",
@@ -24,9 +24,15 @@ export class VictimsPage implements OnInit {
     },
   ]
 
+  filteredVictims: any[] = [];
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getStableVictims() {
+
   }
 
 }

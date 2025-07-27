@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { ApiUrlsStateService } from '../../state/api-urls/api-urls-state.service';
+import { ApiUrlsService } from '../api-urls/api-urls.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,10 +11,10 @@ export class MissionApiService {
   httpHeaders = { 'Content-Type': 'application/json' };
 
   constructor(
-    private apiUrlsStateService: ApiUrlsStateService,
+    private apiUrlsService: ApiUrlsService,
     private http: HttpClient
   ) {
-    this.baseUrl = this.apiUrlsStateService.missionUrl;
+    this.baseUrl = this.apiUrlsService.missionUrl;
   }
 
   createMission(mission: any): Observable<any> {

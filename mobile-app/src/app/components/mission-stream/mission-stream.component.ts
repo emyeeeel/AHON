@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IonButton, IonIcon } from "@ionic/angular/standalone";
 import { Subscription } from 'rxjs';
 
-import { ApiUrlsStateService } from 'src/app/services/state/api-urls/api-urls-state.service';
+import { ApiUrlsService } from 'src/app/services/api/api-urls/api-urls.service';
 import { MissionStateService } from 'src/app/services/state/mission/mission-state.service';
 
 
@@ -27,10 +27,10 @@ export class MissionStreamComponent implements OnInit, OnDestroy {
   currentImageUrl = 'assets/placeholder.jpg';
 
   constructor(
-    private apiUrlsStateService: ApiUrlsStateService,
+    private apiUrlsService: ApiUrlsService,
     private missionStateService: MissionStateService,
   ) {
-    this.streamUrl = this.apiUrlsStateService.streamUrl;
+    this.streamUrl = this.apiUrlsService.streamUrl;
 
     this.missionSub = this.missionStateService.currentMission$.subscribe(mission => {
       this.currentMission = mission;
