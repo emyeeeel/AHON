@@ -37,6 +37,16 @@
 @import "@ionic/angular/css/palettes/dark.system.css";
 @import '@ionic/angular/css/palettes/dark.class.css';
 
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('assets/fonts/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+
+
 // Custom thermal scanner dark theme
 .ion-palette-dark {
     // Primary navy/dark blue backgrounds
