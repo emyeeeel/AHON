@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ApiUrlsService {
-  baseUrl: any = 'http://192.168.1.3:8000/api';
+  baseUrl: any = 'http://172.29.5.209:8000/api';
 
   // Stream API Url
   streamUrl: string = `${this.baseUrl}/stream/`;

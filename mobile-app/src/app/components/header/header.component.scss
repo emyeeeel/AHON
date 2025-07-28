@@ -97,12 +97,33 @@
     padding: 9px 5px;
     background-color: #16A34A !important;
     color: white !important;
+
+    ion-icon {
+        vertical-align: middle;
+        position: relative;
+        top: -1px; // Adjust this value as needed for perfect alignment
+    }
+
+    ion-text {
+        vertical-align: middle;
+        display: inline-block;
+    }
 }
 
 .end-mission-button {
-    padding: 9px 5px;
     background-color: red !important;
     color: white !important;
+
+    ion-icon {
+        vertical-align: middle;
+        position: relative;
+        top: -1px; // Adjust this value as needed for perfect alignment
+    }
+
+    ion-text {
+        vertical-align: middle;
+        display: inline-block;
+    }
 }
 
 .start-mission-button ion-icon,
