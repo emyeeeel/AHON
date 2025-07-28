@@ -58,11 +58,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   async startMission() {
     this.missionTimerService.startMission();
+    this.missionStateService.toggleMissionStartEnd(true);
     await this.createMission();
   }
 
   async endMission() {
     this.missionTimerService.stopMission();
+    this.missionStateService.toggleMissionStartEnd(false);
     await this.updateMission();
   }
 
@@ -80,6 +82,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // }
 
   createMission() {
+
     let mission = {
       date_time_started: new Date().toISOString(), // Current time in ISO format
     }
