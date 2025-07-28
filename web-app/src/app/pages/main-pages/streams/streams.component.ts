@@ -9,6 +9,7 @@ import { DeviceStreamService } from '../../../services/stream/device-stream.serv
 
 @Component({
   selector: 'app-streams',
+  standalone: true,
   imports: [ThumbnailComponent, CommonModule, NavBarComponent],
   templateUrl: './streams.component.html',
   styleUrl: './streams.component.scss'
@@ -18,43 +19,44 @@ export class StreamsComponent implements OnInit, OnDestroy {
   selectedDevice: DeviceData | null = null;
   selectedStreamNumber: number = 0;
 
-  private deviceSubscription: Subscription = new Subscription();
-  private selectedDeviceSubscription: Subscription = new Subscription();
-  private streamNumberSubscription: Subscription = new Subscription();
+  
+
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private deviceService: DeviceService,
     private deviceStreamService: DeviceStreamService
-  ){}
+  ) {}
 
   ngOnInit(): void {
     this.fetchAllDevices();
 
-    this.deviceSubscription = this.deviceService.devices$.subscribe(devices => {
-      this.devices = devices;
+    this.subscriptions.push(
+      this.deviceService.devices$.subscribe(devices => {
+        this.devices = devices;
 
-      if (devices.length > 0 && !this.selectedDevice) {
-        this.selectDevice(devices[0], 1);
-      }
+        if (devices.length > 0 && !this.selectedDevice) {
+          this.selectDevice(devices[0], 1);
+        }
 
-      devices.forEach(device => {
-        this.deviceStreamService.fetchAndCacheThumbnail(device.id);
-      });
-    });
+        // Fetch and cache thumbnails
+        devices.forEach(device => {
+          this.deviceStreamService.fetchAndCacheThumbnail(device.id);
+        });
+      }),
 
-    this.selectedDeviceSubscription = this.deviceStreamService.selectedDevice$.subscribe(device => {
-      this.selectedDevice = device;
-    });
+      this.deviceStreamService.selectedDevice$.subscribe(device => {
+        this.selectedDevice = device;
+      }),
 
-    this.streamNumberSubscription = this.deviceStreamService.selectedStreamNumber$.subscribe(number => {
-      this.selectedStreamNumber = number;
-    });
+      this.deviceStreamService.selectedStreamNumber$.subscribe(number => {
+        this.selectedStreamNumber = number;
+      })
+    );
   }
 
   ngOnDestroy(): void {
-    this.deviceSubscription.unsubscribe();
-    this.selectedDeviceSubscription.unsubscribe();
-    this.streamNumberSubscription.unsubscribe();
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   fetchAllDevices(): void {
@@ -73,9 +75,5 @@ export class StreamsComponent implements OnInit, OnDestroy {
     const latDir = lat >= 0 ? 'N' : 'S';
     const lonDir = lon >= 0 ? 'E' : 'W';
     return `${Math.abs(lat).toFixed(4)}° ${latDir}, ${Math.abs(lon).toFixed(4)}° ${lonDir}`;
-  }
-
-  getThumbnail(deviceId: number): string {
-    return this.deviceStreamService.getThumbnail(deviceId) as string;
   }
 }

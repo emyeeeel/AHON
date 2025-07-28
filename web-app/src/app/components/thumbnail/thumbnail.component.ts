@@ -15,14 +15,13 @@ export class ThumbnailComponent implements OnInit {
   @Input() isSelected!: boolean;
   @Input() location!: string;
   @Output() select = new EventEmitter<void>();
-  
 
-  readonly thumbnailUrl = 'http://localhost:8000/api/image/';
+  thumbnail: string | null = null;
 
   constructor(private deviceStreamService: DeviceStreamService) {}
 
   ngOnInit(): void {
-    
+    this.thumbnail = this.deviceStreamService.getThumbnail(this.deviceId) as string;
   }
 
   onSelect(): void {

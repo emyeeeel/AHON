@@ -3,12 +3,12 @@
      [class.selected]="isSelected"
      (click)="onSelect()">
      
-  <img
-    class="thumbnail-img"
-    *ngIf="thumbnailUrl"
-    [src]="thumbnailUrl"
-    alt="Device Footage"
-  />
+     <img
+     class="thumbnail-img"
+     *ngIf="thumbnail"
+     [src]="thumbnail"
+     alt="Device Footage"
+   />
   
   <div class="thumbnail-overlay">
     <div class="live-number">Stream #{{ streamNumber }}</div>
