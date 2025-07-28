@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <app-victim-filter></app-victim-filter>  
+  
+  <!-- Debug view (remove this in production) -->
+    <!-- <p>{{currentMission | json}}</p>
+  <p>{{currentMission.id}}</p> -->
+  <!-- <div class="debug-section">
+    <h3>Raw Data (Debug):</h3>
+    <pre>{{ victimsWithDetections | json }}</pre>
+  </div> -->
+
+  <!-- Victims list view -->
+    <div  class="victims-container">
+      <div *ngFor="let item of victims; let i = index" class="victim-wrapper">
+        <div  class="ms-3 me-3 my-4">
+          <app-victim-info-card [victim]="item"></app-victim-info-card>
+        </div>
+      </div>
+      
+      <div *ngIf="victims.length === 0" class="no-victims">
+        <ion-text color="medium">No victims found for this mission</ion-text>
+      </div>
+    </div>
+
+  <div class="py-4"></div>
+</ion-content>

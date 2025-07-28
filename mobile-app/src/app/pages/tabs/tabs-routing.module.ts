@@ -13,14 +13,14 @@ export const routes: Routes = [
         redirectTo: 'stream',
         pathMatch: 'full'
       },
-      // {
-      //   path: 'stream',
-      //   loadChildren: () => import('./stream/stream.module').then(m => m.StreamPageModule)
-      // },
-      // {
-      //   path: 'victims',
-      //   loadChildren: () => import('./victims/victims.module').then(m => m.VictimsPageModule)
-      // },
+      {
+        path: 'stream',
+        loadChildren: () => import('./stream/stream.module').then(m => m.StreamPageModule)
+      },
+      {
+        path: 'victims',
+        loadChildren: () => import('./victims/victims.module').then(m => m.VictimsPageModule)
+      },
       {
         path: 'history',
         loadChildren: () => import('./history/history.module').then(m => m.HistoryPageModule)
@@ -33,12 +33,21 @@ export const routes: Routes = [
   },
   {
     path: 'history',
-    loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
+    loadChildren: () => import('./history/history.module').then(m => m.HistoryPageModule)
   },
   {
     path: 'settings',
-    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+    loadChildren: () => import('./settings/settings.module').then(m => m.SettingsPageModule)
   },
+  {
+    path: 'stream',
+    loadChildren: () => import('./stream/stream.module').then(m => m.StreamPageModule)
+  },
+  {
+    path: 'victims',
+    loadChildren: () => import('./victims/victims.module').then(m => m.VictimsPageModule)
+  },
+
 
 ];
 

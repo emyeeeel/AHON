@@ -1,0 +1,53 @@
+<app-header> </app-header>
+
+
+<ion-content [fullscreen]="true">
+  <!-- <h1>{{currentMission | json}}</h1> -->
+  <div *ngIf="isMissionOngoing == true" class="stream-page-container pt-4">
+    
+    <!-- Input Type Selector -->
+    <!-- <div class="input-selector">
+      <ion-segment [(ngModel)]="currentInputType" (ionChange)="onInputTypeChange($event)">
+        <ion-segment-button value="stream">
+          <ion-label>Stream</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="stream-2">
+          <ion-label>Stream 2</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </div> -->
+    
+    <!-- Main Display Area -->
+    <div class="main-display">
+      <!-- Stream Display -->
+      <div class="stream-container" *ngIf="currentInputType === 'stream'">
+
+        <div class="stream-display" *ngIf="isStreamActive">
+          <div class="media-wrapper">
+            <app-mission-stream ></app-mission-stream>
+          </div>
+        </div>
+        
+        <div class="stream-placeholder" *ngIf="!isStreamActive">
+          <div class="placeholder-content">
+            <ion-icon name="videocam-off-outline" size="large"></ion-icon>
+            <p>Stream not active</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  
+  <div *ngIf="isMissionOngoing == false" class="container">
+    <div class="initial-state">
+      <img src="assets/icon/search-icon.png" alt="Search Icon" class="search-icon">
+      <h2 class="scanner-title">Thermal Scanner Ready</h2>
+      <p class="scanner-subtitle">Start mission to begin thermal scanning</p>
+    </div>
+  </div>
+  
+</ion-content>
+
+

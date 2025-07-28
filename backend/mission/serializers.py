@@ -1,19 +1,10 @@
 from rest_framework import serializers
-from backend.mission.models import Detection, Mission, Victim
+from mission.models import Mission, Victim
 
 
 class MissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mission
-        fields = '__all__'
-
-
-class DetectionSerializer(serializers.ModelSerializer):
-    mission = MissionSerializer(read_only=True)
-    image_url = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Detection
         fields = '__all__'
 
 

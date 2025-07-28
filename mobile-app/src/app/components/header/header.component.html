@@ -1,0 +1,42 @@
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <div class="header-content">
+      <!-- Show if mission has not started -->
+      <ng-container *ngIf="!missionStarted">
+        <button class="start-mission-button" fill="solid" (click)="startMission()">
+          <ion-icon slot="start" name="play-outline"></ion-icon>
+          Start Mission
+        </button>
+
+        <div class="people-count">
+          <ion-icon name="people-outline"></ion-icon>
+          <!-- <span>{{victimsCount ? victimsCount : 0}}</span> -->
+           <span>0</span>
+        </div>
+      </ng-container>
+
+      <!-- Show if mission has started -->
+      <ng-container *ngIf="missionStarted">
+        <div class="mission-time" *ngIf="missionStarted">
+          <ion-icon name="time-outline"></ion-icon>
+          <span>{{ formattedTime }}</span>
+        </div>
+
+        <div class="people-count">
+          <ion-icon name="people-outline"></ion-icon>
+          <!-- <span>{{victimsCount? victimsCount: 0}}</span> -->
+          <span>0</span>
+        </div>
+
+        <button class="end-mission-button" fill="solid" (click)="endMission()">
+          <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
+          End Mission
+        </button>
+      </ng-container>
+    </div>
+
+    <!-- Debugger -->
+    <!-- <p>{{this.currentMission.id}}</p> -->
+
+  </ion-toolbar>
+</ion-header>

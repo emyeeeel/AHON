@@ -1,0 +1,275 @@
+ion-content {
+    --background: #111827;
+    --color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
+
+.victim-counts {
+    height: 10vh;
+    border: 2px solid #4C545F;
+    border-left: none;
+    border-right: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    text-align: center;
+    padding: 0 16px;
+
+    background-color: #1F2937;
+    --ion-background-color: #1F2937;
+
+    .victim-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        color: white;
+        width: 80%;
+
+        ion-icon {
+            font-size: 20px;
+            color: white;
+        }
+
+        span {
+            color: white;
+        }
+    }
+
+    .victim-status {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        font-size: 14px;
+        font-weight: 400;
+        color: #74FF78;
+        width: 80%;
+    }
+}
+
+ion-header {
+    --background: #111827;
+}
+
+ion-toolbar {
+    --background: #111827;
+    --color: white;
+}
+
+ion-title {
+    --color: white;
+
+    .victim-card {
+        background: #2a3441;
+        border-radius: 8px;
+        margin: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    ion-card-content {
+        padding: 16px;
+        color: #ffffff;
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .victim-id {
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffffff;
+    }
+
+    .status-badge {
+        background: #ffa500;
+        color: #000000;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .status-badge.stable {
+        background: #ffa500;
+    }
+
+    .status-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    .status-icon {
+        color: #00bcd4;
+        font-size: 16px;
+        margin-right: 8px;
+        width: 20px;
+    }
+
+    .temperature {
+        color: #00bcd4;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .pulse-status {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #ffffff;
+    }
+
+    .flag-icon {
+        margin-right: 6px;
+        font-size: 12px;
+    }
+
+    .coordinates {
+        font-size: 14px;
+        color: #ffffff;
+    }
+
+    .detection-info {
+        margin: 16px 0 12px 0;
+    }
+
+    .detection-time {
+        font-size: 12px;
+        color: #888;
+    }
+
+    .progress-section {
+        margin-top: 16px;
+    }
+
+    .confidence-bar {
+        --background: #444;
+        --progress-background: #00bcd4;
+        height: 6px;
+        margin-bottom: 8px;
+    }
+
+    .confidence-text {
+        font-size: 12px;
+        color: #888;
+    }
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+    ion-spinner {
+        margin-bottom: 1rem;
+    }
+}
+
+.error-container {
+    padding: 1rem;
+    text-align: center;
+}
+
+.debug-section {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+
+    h3 {
+        margin-top: 0;
+        color: #666;
+    }
+
+    pre {
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 4px;
+        overflow-x: auto;
+        font-size: 0.8rem;
+        border: 1px solid #ddd;
+    }
+}
+
+.detections-container {
+    padding: 1rem;
+
+    h2 {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+}
+
+.detection-card {
+    margin-bottom: 1rem;
+
+    ion-card {
+        margin: 0;
+    }
+}
+
+.detection-info {
+    margin-bottom: 1rem;
+
+    p {
+        margin: 0.5rem 0;
+
+        strong {
+            color: var(--ion-color-primary);
+        }
+    }
+}
+
+.victims-section {
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+
+    h4 {
+        color: var(--ion-color-primary);
+        margin-bottom: 0.5rem;
+    }
+}
+
+.no-victims {
+    text-align: center;
+    padding: 1rem;
+    font-style: italic;
+}
+
+.victim-card {
+    margin-bottom: 0.5rem;
+
+    ion-item {
+        --background: #f9f9f9;
+        --border-radius: 8px;
+        margin-bottom: 0.5rem;
+    }
+
+    h3 {
+        color: var(--ion-color-primary);
+        margin: 0;
+    }
+
+    p {
+        margin: 0.2rem 0;
+        color: var(--ion-color-medium);
+    }
+}
+
+.debug-section {
+    color: black;
+}
