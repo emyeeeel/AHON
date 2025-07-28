@@ -5,7 +5,7 @@
       <ng-container *ngIf="!missionStarted">
         <button class="start-mission-button" fill="solid" (click)="startMission()">
           <ion-icon slot="start" name="play-outline"></ion-icon>
-          Start Mission
+          <ion-text class="ps-1">Start Mission</ion-text> 
         </button>
 
         <div class="people-count">
@@ -28,9 +28,9 @@
           <span>0</span>
         </div>
 
-        <button class="end-mission-button" fill="solid" (click)="endMission()">
+        <button class="end-mission-button px-2 py-2" fill="solid" (click)="endMission()">
           <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
-          End Mission
+          <ion-text class="ps-1">End Mission</ion-text> 
         </button>
       </ng-container>
     </div>

@@ -1,0 +1,457 @@
+ion-header {
+    ion-toolbar {
+        --background: #1e2a36;
+        --color: #ffffff;
+
+        ion-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            .history-icon {
+                font-size: 22px;
+                vertical-align: middle;
+                position: relative;
+                top: 1px; // Adjust this value as needed for perfect alignment
+            }
+
+            ion-text {
+                vertical-align: middle;
+                display: inline-block;
+            }
+        }
+    }
+}
+
+ion-content {
+    --background: #111827; // Match settings page background
+    --color: #ffffff;
+}
+
+.history-page-container {
+    padding: 20px 16px;
+    background-color: #111827; // Match settings page background
+    min-height: 100vh;
+    color: #ffffff;
+}
+
+// Statistics Summary
+.stats-summary {
+    margin-bottom: 24px;
+
+    .stats-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        margin: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+        ion-card-content {
+            padding: 16px;
+        }
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+
+        .stat-item {
+            text-align: center;
+            padding: 8px;
+
+            .stat-value {
+                font-size: 24px;
+                font-weight: 700;
+                color: #007bff;
+                margin-bottom: 4px;
+            }
+
+            .stat-label {
+                font-size: 12px;
+                color: rgba(255, 255, 255, 0.7);
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+        }
+    }
+}
+
+// Filter Section
+.filter-section {
+    margin-bottom: 27px;
+
+    .filter-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .filter-toggle {
+            --color: #007bff;
+            font-size: 14px;
+
+            ion-icon {
+                margin-right: 4px;
+            }
+        }
+    }
+
+    .filter-controls {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+
+        .filter-row {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .filter-item {
+            --background: transparent;
+            --border-color: transparent;
+            --color: #ffffff;
+            --padding-start: 0;
+            --padding-end: 0;
+
+            ion-label {
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            ion-select {
+                --color: #ffffff;
+                --placeholder-color: rgba(255, 255, 255, 0.6);
+            }
+        }
+    }
+}
+
+// Mission List
+.mission-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .mission-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        margin: 0;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 123, 255, 0.3);
+        }
+
+        &.expanded {
+            border-color: #007bff;
+            background: rgba(0, 123, 255, 0.05);
+        }
+
+        .mission-header {
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+            .mission-info {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 12px;
+
+                .mission-date,
+                .mission-duration {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    color: rgba(255, 255, 255, 0.8);
+                    font-size: 14px;
+
+                    ion-icon {
+                        font-size: 16px;
+                        color: #007bff;
+                    }
+                }
+            }
+
+            .mission-stats {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .mission-status {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    padding: 4px 8px;
+                    border-radius: 6px;
+                    font-size: 12px;
+                    font-weight: 500;
+                    text-transform: uppercase;
+
+                    &.status-completed {
+                        background: rgba(40, 167, 69, 0.2);
+                        color: #28a745;
+                    }
+
+                    &.status-aborted {
+                        background: rgba(220, 53, 69, 0.2);
+                        color: #dc3545;
+                    }
+
+                    &.status-ongoing {
+                        background: rgba(255, 193, 7, 0.2);
+                        color: #ffc107;
+                    }
+
+                    ion-icon {
+                        font-size: 14px;
+                    }
+                }
+
+                .victims-count {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    color: #ffffff;
+                    font-size: 14px;
+                    font-weight: 500;
+
+                    ion-icon {
+                        color: #007bff;
+                    }
+                }
+            }
+        }
+
+        .mission-content {
+            padding: 16px;
+
+            .mission-summary {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                margin-bottom: 16px;
+
+                .summary-item {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .label {
+                        color: rgba(255, 255, 255, 0.7);
+                        font-size: 14px;
+                    }
+
+                    .value {
+                        color: #ffffff;
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Mission Details (Expanded)
+.mission-details {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 16px;
+    margin-top: 16px;
+
+    .details-section {
+        margin-bottom: 20px;
+
+        h4 {
+            color: #007bff;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+        }
+
+        .detection-summary {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .detection-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .label {
+                    color: rgba(255, 255, 255, 0.7);
+                    font-size: 14px;
+                }
+
+                .value {
+                    color: #ffffff;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .victims-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            .victim-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 8px;
+
+                .victim-info {
+                    .victim-id {
+                        color: #ffffff;
+                        font-size: 14px;
+                        font-weight: 600;
+                        margin-bottom: 4px;
+                    }
+
+                    .victim-details {
+                        display: flex;
+                        gap: 12px;
+
+                        .victim-status {
+                            padding: 2px 6px;
+                            border-radius: 4px;
+                            font-size: 11px;
+                            font-weight: 500;
+                            text-transform: uppercase;
+
+                            &.status-stable {
+                                background: rgba(40, 167, 69, 0.2);
+                                color: #28a745;
+                            }
+
+                            &.status-critical {
+                                background: rgba(255, 193, 7, 0.2);
+                                color: #ffc107;
+                            }
+
+                            &.status-deceased {
+                                background: rgba(220, 53, 69, 0.2);
+                                color: #dc3545;
+                            }
+                        }
+
+                        .victim-temp,
+                        .victim-confidence {
+                            color: rgba(255, 255, 255, 0.8);
+                            font-size: 12px;
+                        }
+                    }
+                }
+
+                .victim-actions {
+                    ion-button {
+                        --color: #007bff;
+                    }
+                }
+            }
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+
+            ion-button {
+                --border-color: rgba(255, 255, 255, 0.3);
+                --color: #ffffff;
+                font-size: 12px;
+                height: 36px;
+
+                &[color="danger"] {
+                    --border-color: #dc3545;
+                    --color: #dc3545;
+                }
+            }
+        }
+    }
+}
+
+// Empty State
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: rgba(255, 255, 255, 0.6);
+
+    ion-icon {
+        margin-bottom: 16px;
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    h3 {
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0 0 8px 0;
+    }
+
+    p {
+        font-size: 14px;
+        margin: 0 0 20px 0;
+    }
+
+    ion-button {
+        --border-color: rgba(255, 255, 255, 0.3);
+        --color: #ffffff;
+    }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+    .history-page-container {
+        padding: 16px 12px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .filter-row {
+        flex-direction: column;
+    }
+
+    .mission-info {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 8px;
+    }
+
+    .mission-stats {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 8px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+
+        ion-button {
+            width: 100%;
+        }
+    }
+}
+
+// Additional spacing for bottom tab bar
+ion-content {
+    --padding-bottom: 80px;
+}

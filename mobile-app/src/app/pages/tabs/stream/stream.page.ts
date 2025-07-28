@@ -34,8 +34,6 @@ export class StreamPage implements OnInit {
     this.missionSub = this.missionStateService.currentMission$.subscribe(mission => {
       this.currentMission = mission;
     });
-
-    this.isMissionOngoing = true;
   }
 
   onInputTypeChange(event: any) {
