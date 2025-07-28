@@ -17,8 +17,12 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
+from detection.views import detect_pose_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('api/', include('stream.urls')),
+
+    # API endpoint for detection
+    path('api/detect_pose/', detect_pose_view, name='detect_pose'),
 ]
