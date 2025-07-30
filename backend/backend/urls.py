@@ -25,4 +25,6 @@ urlpatterns = [
 
     # API endpoint for detection
     path('api/detect_pose/', detect_pose_view, name='detect_pose'),
+
+    path('mission-api/', include('mission.urls'))
 ]

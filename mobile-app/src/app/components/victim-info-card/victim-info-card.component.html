@@ -1,0 +1,34 @@
+<ion-card class="victim-card">
+  <ion-card-content>
+    <div class="card-header">
+      <span class="victim-id">Victim ID: {{ victim.id }}</span>
+      <span class="status-badge stable">STABLE</span>
+    </div>
+    
+    <div class="status-row">
+      <ion-icon name="body-outline" class="status-icon"></ion-icon>
+      <span class="pulse-status">Mobile</span>
+    </div>
+    
+    <div class="status-row">
+      <ion-icon name="pulse-outline" class="status-icon"></ion-icon>
+      <span class="pulse-status">
+        Lying down
+      </span>
+    </div>
+    
+    <div class="status-row">
+      <ion-icon name="location-outline" class="status-icon"></ion-icon>
+      <span class="coordinates">{{victim.estimated_latitude}}, {{victim.estimated_longitude}}</span>
+    </div>
+    
+    <div class="detection-info">
+      <span class="detection-time">Detected: {{victim.date_time_detected | date:'medium'}}</span>
+    </div>
+    
+    <div class="progress-section">
+      <ion-progress-bar value="{{victim.person_recognition_confidence}}" class="confidence-bar"></ion-progress-bar>
+      <span class="confidence-text">Person Detection Confidence: {{ victim.person_recognition_confidence * 100 | number: '1.0-0' }}%</span>
+    </div>
+  </ion-card-content>
+</ion-card>

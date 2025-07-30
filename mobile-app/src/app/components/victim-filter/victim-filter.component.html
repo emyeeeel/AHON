@@ -1,0 +1,44 @@
+<div class="filter-container">
+  <div class="filter-header" (click)="toggleCollapse()">
+    <h3>Filter Victims</h3>
+    <ion-icon 
+      [name]="isCollapsed ? 'filter-outline' : 'filter'" 
+      class="collapse-icon">
+    </ion-icon>
+  </div>
+
+  <div class="filter-content" [class.collapsed]="isCollapsed">
+    <div class="filter-options">
+      <div class="filter-option" 
+            [class.selected]="selectedFilter === 'all'"
+            (click)="selectFilter('all')">
+        <ion-icon name="people-outline" class="filter-icon"></ion-icon>
+        <div class="filter-content">
+          <span class="filter-label">All Victims</span>
+          <span class="filter-count" *ngIf="allVictimsCount">{{ allVictimsCount }}</span>
+        </div>
+      </div>
+
+      <!-- Additional filter options can be added here -->
+      <div class="filter-option" 
+            [class.selected]="selectedFilter === 'stable'"
+            (click)="selectFilter('stable')">
+        <ion-icon name="checkmark-circle-outline" class="filter-icon"></ion-icon>
+        <div class="filter-content">
+          <span class="filter-label">Stable</span>
+          <span class="filter-count" *ngIf="stableCount">{{ stableCount }}</span>
+        </div>
+      </div>
+
+      <div class="filter-option" 
+            [class.selected]="selectedFilter === 'critical'"
+            (click)="selectFilter('critical')">
+        <ion-icon name="warning-outline" class="filter-icon"></ion-icon>
+        <div class="filter-content">
+          <span class="filter-label">Critical</span>
+          <span class="filter-count" *ngIf="criticalCount">{{ criticalCount }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
