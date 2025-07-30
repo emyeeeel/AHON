@@ -5,8 +5,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from backend.mission.models import Mission, Victim
-from backend.mission.serializers import VictimSerializer
+from mission.models import Mission, Victim
+from mission.serializers import VictimSerializer
 
 
 class VictimDetailView(APIView):

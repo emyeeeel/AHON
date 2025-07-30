@@ -1,0 +1,145 @@
+.info-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+
+    .victim-info {
+        border: 1px solid white;
+        border-radius: 7px;
+        height: 213px;
+        width: 388px;
+        padding: 14px 20px;
+
+        .victim-id {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 388px;
+
+            .victim-label {
+                color: white;
+                font-size: 16px;
+                font-weight: 500;
+            }
+
+            .status-badge {
+                text-align: center;
+                height: 32px;
+                width: 85px;
+                background-color: #303D50;
+                color: #E0B617;
+                padding: 4px 12px;
+                border-radius: 25px;
+                font-size: 14px;
+                font-weight: 500;
+            }
+        }
+    }
+
+}
+
+.victim-card {
+    background: #2a3441;
+    border-radius: 8px;
+    margin: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+ion-card-content {
+    padding: 16px;
+    color: #ffffff;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.victim-id {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.status-badge {
+    text-align: center;
+    height: 32px;
+    width: 85px;
+    background-color: #303D50;
+    color: #E0B617;
+    padding: 4px 12px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.status-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.status-icon {
+    color: #00bcd4;
+    font-size: 16px;
+    margin-right: 8px;
+    width: 20px;
+}
+
+.temperature {
+    color: #00bcd4;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.pulse-status {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.flag-icon {
+    margin-right: 6px;
+    font-size: 12px;
+}
+
+.coordinates {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.detection-info {
+    margin: 16px 0 12px 0;
+}
+
+.detection-time {
+    font-size: 12px;
+    color: #888;
+}
+
+.progress-section {
+    margin-top: 16px;
+}
+
+.confidence-bar {
+    --background: #444;
+    --progress-background: #00bcd4;
+    height: 6px;
+    margin-bottom: 8px;
+}
+
+.confidence-text {
+    font-size: 12px;
+    color: #888;
+}
+
+.victim-card,
+ion-card-content {
+    margin: 0;
+}
