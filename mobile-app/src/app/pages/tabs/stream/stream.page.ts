@@ -1,43 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MissionStateService } from 'src/app/services/state/mission/mission-state.service';
+import { ApiUrlsService } from '../../../services/api/api-urls/api-urls.service';
+import { DetectionDataService } from 'src/app/services/state/detection/detection-data.service';
+
 @Component({
   selector: 'app-stream',
   templateUrl: './stream.page.html',
   styleUrls: ['./stream.page.scss'],
   standalone: false,
 })
-export class StreamPage implements OnInit {
-  // mission-state variables
+export class StreamPage implements OnInit, OnDestroy {
   isMissionOngoingSubscription!: Subscription;
   isMissionOngoing: boolean = false;
-  missionSub!: Subscription;
-  currentMission: any;
-
-  // input selection variables
-  currentInputType: 'stream' | 'stream-2' = 'stream';
-
-  // stream variables
-  isStreamActive = true;
+  
+  public videoFeedUrl: string;
 
   constructor(
-    private missionStateService: MissionStateService
-  ) { }
+    private missionStateService: MissionStateService,
+    private apiUrls: ApiUrlsService,
+    private detectionDataService: DetectionDataService
+  ) {
+    this.videoFeedUrl = this.apiUrls.videoFeedUrl;
+  }
 
   ngOnInit() {
-    // Subscribe to mission status changes
     this.isMissionOngoingSubscription = this.missionStateService.isMissionOngoing$.subscribe(isOngoing => {
       this.isMissionOngoing = isOngoing;
-    });
-
-    // Subscribe to mission changes
-    this.missionSub = this.missionStateService.currentMission$.subscribe(mission => {
-      this.currentMission = mission;
+      if (isOngoing) {
+        this.detectionDataService.startListening();
+      } else {
+        this.detectionDataService.stopListening();
+      }
     });
   }
 
-  onInputTypeChange(event: any) {
-    this.currentInputType = event.detail.value;
+  ngOnDestroy() {
+    this.isMissionOngoingSubscription.unsubscribe();
+    this.detectionDataService.stopListening();
   }
-
 }
+
+
+
+
+
+

@@ -4,13 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ApiUrlsService {
-  baseUrl: any = 'http://172.29.5.209:8000/api';
-
-  // Stream API Url
-  streamUrl: string = `${this.baseUrl}/stream/`;
-
-  // Mission Api Url
-  missionUrl: string = `${this.baseUrl}/mission-api`;
-
+  private readonly BASE_URL = 'http://192.168.1.6:8000'; 
+  public readonly videoFeedUrl = `${this.BASE_URL}/api/video_feed/`;
+  public readonly detectionDataUrl = `${this.BASE_URL}/api/detection_data/`;
+  public readonly missionUrl = `${this.BASE_URL}/mission-api`;
   constructor() { }
+
 }

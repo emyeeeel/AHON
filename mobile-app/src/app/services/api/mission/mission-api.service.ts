@@ -1,19 +1,22 @@
+// in src/app/services/api/mission/mission-api.service.ts
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ApiUrlsService } from '../api-urls/api-urls.service'; // Corrected path if needed
 
-import { ApiUrlsService } from '../api-urls/api-urls.service';
 @Injectable({
   providedIn: 'root'
 })
 export class MissionApiService {
-  baseUrl: any;
+  baseUrl: string; // Changed to string
   httpHeaders = { 'Content-Type': 'application/json' };
 
   constructor(
     private apiUrlsService: ApiUrlsService,
     private http: HttpClient
   ) {
+    // This line is now correct because missionUrl exists in ApiUrlsService
     this.baseUrl = this.apiUrlsService.missionUrl;
   }
 
@@ -22,7 +25,6 @@ export class MissionApiService {
     return this.http.post(`${this.baseUrl}/missions/`, body, { headers: this.httpHeaders });
   }
 
-  // Updates the mission object with the end time (date_time_ended)
   updateMission(mission: any): Observable<any> {
     const body = { date_time_ended: mission.date_time_ended };
     return this.http.put(`${this.baseUrl}/mission/${mission.id}/`, body, { headers: this.httpHeaders });
@@ -35,4 +37,5 @@ export class MissionApiService {
   getMissionById(missionId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/mission/${missionId}/`, { headers: this.httpHeaders });
   }
+
 }

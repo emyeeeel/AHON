@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { interval, Subscription } from 'rxjs';
-
-import { MissionTimerService } from 'src/app/services/components/mission-timer/mission-timer.service';
-import { MissionApiService } from 'src/app/services/api/mission/mission-api.service';
-import { MissionResponseService } from 'src/app/services/api/mission/mission-response.service';
+import { Subscription } from 'rxjs';
 import { MissionStateService } from 'src/app/services/state/mission/mission-state.service';
+import { DetectionDataService } from 'src/app/services/state/detection/detection-data.service';
+ import { MissionTimerService } from 'src/app/services/components/mission-timer/mission-timer.service';
+// Note: MissionApiService and MissionResponseService are not yet needed in this simplified version (we are still on streaming page functionality)
+// import { MissionApiService } from 'src/app/services/api/mission/mission-api.service';
+// import { MissionResponseService } from 'src/app/services/api/mission/mission-response.service';
 
 
 @Component({
@@ -16,96 +17,57 @@ import { MissionStateService } from 'src/app/services/state/mission/mission-stat
   imports: [CommonModule, IonicModule],
   standalone: true
 })
-
 export class HeaderComponent implements OnInit, OnDestroy {
-  // mission-timer variables
-  formattedTime = '00:00';
+  formattedTime = '00:00'; 
   missionStarted = false;
+  personCount: number = 0;
 
-  // mission-state variables
-  private missionSub!: Subscription;
-  currentMission: any;
-  currentMissionData: any;
-
-  private victimPollingSub!: Subscription;
+  private personCountSub!: Subscription;
+  private missionStartedSub!: Subscription;
+  private timerSub!: Subscription;
 
   constructor(
-    private missionTimerService: MissionTimerService,
-    private missionApiService: MissionApiService,
-    private missionResponseService: MissionResponseService,
     private missionStateService: MissionStateService,
-
+    private detectionDataService: DetectionDataService,
+    private missionTimerService: MissionTimerService
   ) { }
 
-
   ngOnInit() {
-    this.missionTimerService.missionStarted$.subscribe(started => {
+    this.missionStartedSub = this.missionStateService.isMissionOngoing$.subscribe(started => {
       this.missionStarted = started;
     });
 
-    this.missionTimerService.formattedTime$.subscribe(time => {
+    this.timerSub = this.missionTimerService.formattedTime$.subscribe(time => {
       this.formattedTime = time;
     });
 
-    this.missionSub = this.missionStateService.currentMission$.subscribe(mission => {
-      this.currentMission = mission;
+    this.personCountSub = this.detectionDataService.personCount$.subscribe(count => {
+      this.personCount = count;
     });
   }
 
   ngOnDestroy() {
-    this.missionSub.unsubscribe();
+    if (this.personCountSub) {
+      this.personCountSub.unsubscribe();
+    }
+    if (this.missionStartedSub) {
+      this.missionStartedSub.unsubscribe();
+    }
+
+    if (this.timerSub) {
+      this.timerSub.unsubscribe();
+    }
   }
 
-  async startMission() {
+  startMission() {
     this.missionTimerService.startMission();
+    // This now simply tells the app the mission has started
     this.missionStateService.toggleMissionStartEnd(true);
-    await this.createMission();
   }
 
-  async endMission() {
+  endMission() {
     this.missionTimerService.stopMission();
+    // This now simply tells the app the mission has ended
     this.missionStateService.toggleMissionStartEnd(false);
-    await this.updateMission();
   }
-
-
-  // async createMission() {
-  //   const mission = {
-  //     date_time_started: new Date().toISOString(), // Current time in ISO format
-  //   }
-
-  //   this.currentMissionData = await this.missionResponseService.createMission(mission);
-
-  //   // Set the current mission & isMissionOngoing = true in the Mission state service
-  //   this.missionStateService.setMission(this.currentMissionData);
-  //   this.missionStateService.toggleMissionStartEnd(true);
-  // }
-
-  createMission() {
-
-    let mission = {
-      date_time_started: new Date().toISOString(), // Current time in ISO format
-    }
-    this.missionApiService.createMission(mission).subscribe(
-      data => {
-        this.currentMissionData = data;
-
-        // Set the current mission in the Mission state service
-        this.missionStateService.setMission(this.currentMissionData);
-        this.missionStateService.toggleMissionStartEnd(true);
-      },
-      error => { console.log('Error: ', error); }
-    );
-  }
-
-  async updateMission() {
-    let mission = {
-      id: this.currentMissionData.id,
-      date_time_ended: new Date().toISOString(), // Current time in ISO format
-    }
-
-    await this.missionResponseService.updateMission(mission);
-    this.missionStateService.toggleMissionStartEnd(false); // Set isMissionOngoing = false
-  }
-
 }

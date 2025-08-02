@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="py-1">
-     <ion-title>
+      <ion-title>
         <ion-icon name="settings-outline" class="settings-icon"></ion-icon>
         <ion-text class="ps-2">Settings</ion-text>
       </ion-title>
@@ -8,127 +8,68 @@
 </ion-header>
 
 <ion-content class="settings-content">
-<div class="px-2">
-  <div class="thermal-camera-section">
-    <div class="section-header">
-      <h2>Thermal Camera</h2>
-    </div>
-
-    <div class="section-subheader">
-      <h3>View Mode</h3>
-    </div>
-
-    <div class="view-mode-options">
-      <div class="mode-option" 
-           [class.selected]="selectedMode === 'thermal'"
-           (click)="selectMode('thermal')">
-        <ion-icon name="thermometer-outline" class="mode-icon"></ion-icon>
-        <span>Thermal Mode</span>
+  <div class="px-2">
+    <div class="detection-model-section">
+      <div class="section-header">
+        <h2>Detection Model</h2>
       </div>
 
-      <div class="mode-option visible-light" 
-           [class.selected]="selectedMode === 'visible'"
-           (click)="selectMode('visible')">
-        <ion-icon name="eye-outline" class="mode-icon"></ion-icon>
-        <span>Visible Light</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Detection Model Section -->
-  <div class="detection-model-section">
-    <div class="section-header">
-      <h2>Detection Model</h2>
-    </div>
-
-    <div class="section-subheader">
-      <h3>Camera View Angle</h3>
-      <p class="subheader-description">Select the camera angle for optimal detection accuracy</p>
-    </div>
-
-    <div class="view-angle-options">
-      <div class="angle-option" 
-           [class.selected]="selectedViewAngle === 'front'"
-           (click)="selectViewAngle('front')">
-        <div class="angle-icon-container">
-          <ion-icon name="person-outline" class="angle-icon"></ion-icon>
-        </div>
-        <div class="angle-info">
-          <span class="angle-title">Front/Side View</span>
-          <span class="angle-description">Best for face-to-face detection</span>
-        </div>
+      <div class="section-subheader">
+        <h3>Camera View Angle</h3>
+        <p class="subheader-description">Select the camera angle for optimal detection accuracy</p>
       </div>
 
-      <div class="angle-option" 
-           [class.selected]="selectedViewAngle === 'angled'"
-           (click)="selectViewAngle('angled')">
-        <div class="angle-icon-container">
-          <ion-icon name="camera-outline" class="angle-icon"></ion-icon>
-        </div>
-        <div class="angle-info">
-          <span class="angle-title">Angled View</span>
-          <span class="angle-description">Optimal for diagonal perspectives</span>
-        </div>
-      </div>
-
-      <div class="angle-option" 
-           [class.selected]="selectedViewAngle === 'top'"
-           (click)="selectViewAngle('top')">
-        <div class="angle-icon-container">
-          <ion-icon name="airplane-outline" class="angle-icon"></ion-icon>
-        </div>
-        <div class="angle-info">
-          <span class="angle-title">Top View</span>
-          <span class="angle-description">Best for overhead surveillance</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Model Status -->
-    <div class="model-status">
-      <ion-card class="status-card">
-        <ion-card-content>
-          <div class="status-info">
-            <ion-icon name="checkmark-circle-outline" class="status-icon active"></ion-icon>
-            <div class="status-text">
-              <span class="status-title">Model Ready</span>
-              <span class="status-description">{{ getModelDescription(selectedViewAngle) }}</span>
-            </div>
+      <div class="view-angle-options">
+        <div class="angle-option" 
+            [class.selected]="selectedViewAngle === 'front'"
+            (click)="selectViewAngle('front')">
+          <div class="angle-icon-container">
+            <ion-icon name="person-outline" class="angle-icon"></ion-icon>
           </div>
-        </ion-card-content>
-      </ion-card>
-    </div>
-  </div>
+          <div class="angle-info">
+            <span class="angle-title">Front/Side View</span>
+            <span class="angle-description">Best for face-to-face detection</span>
+          </div>
+        </div>
 
-  <!-- Advanced Settings -->
-  <div class="advanced-settings-section">
-    <div class="section-header">
-      <h2>Advanced Settings</h2>
-    </div>
+        <div class="angle-option" 
+            [class.selected]="selectedViewAngle === 'angled'"
+            (click)="selectViewAngle('angled')">
+          <div class="angle-icon-container">
+            <ion-icon name="camera-outline" class="angle-icon"></ion-icon>
+          </div>
+          <div class="angle-info">
+            <span class="angle-title">Angled View</span>
+            <span class="angle-description">Optimal for diagonal perspectives</span>
+          </div>
+        </div>
 
-    <div class="settings-list">
-      <div class="setting-item px-2 py-2 mt-2">
-        <ion-label class="pt-2 px-3">
-          <h3>Detection Confidence</h3>
-          <p>Minimum confidence threshold: {{ confidenceThreshold }}%</p>
-        </ion-label>  
-        <ion-range 
-          [(ngModel)]="confidenceThreshold" 
-          min="10" 
-          max="100" 
-          step="5"
-          (ionChange)="onConfidenceChange($event)">
-        </ion-range>
+        <div class="angle-option" 
+            [class.selected]="selectedViewAngle === 'top'"
+            (click)="selectViewAngle('top')">
+          <div class="angle-icon-container">
+            <ion-icon name="airplane-outline" class="angle-icon"></ion-icon>
+          </div>
+          <div class="angle-info">
+            <span class="angle-title">Top View</span>
+            <span class="angle-description">Best for overhead surveillance</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="model-status">
+        <ion-card class="status-card">
+          <ion-card-content>
+            <div class="status-info">
+              <ion-icon name="checkmark-circle-outline" class="status-icon active"></ion-icon>
+              <div class="status-text">
+                <span class="status-title">Model Ready</span>
+                <span class="status-description">{{ getModelDescription(selectedViewAngle) }}</span>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
       </div>
     </div>
   </div>
-
-  <ion-button
-    expand="block"
-    class="auth-button px-3 pt-2"
-    (click)="onLogout()">
-    <ion-icon name="log-out-outline" slot="start"></ion-icon>
-    Logout
-  </ion-button>
-</div>
 </ion-content>
