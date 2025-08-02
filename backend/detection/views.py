@@ -44,7 +44,7 @@ def detect_pose_view(request):
         selected_model = MODELS['default']
 
 
-        results = selected_model(img_np, verbose=False)
+        results = selected_model.track(img_np, persist=True, verbose=False, device='cpu')
         
         all_detections_data = []
         detection_counter = 1
@@ -57,7 +57,10 @@ def detect_pose_view(request):
             
             detection_id_str = f"person_{detection_counter}"
 
+            track_id = box.id.int().cpu().tolist()[0] if box.id is not None else -1
+
             person_data = {
+                "track_id": track_id,
                 "detection_id": detection_id_str,
                 "confidence": confidence,
                 "bounding_box": {"x_center": bounding_box_xywh[0], "y_center": bounding_box_xywh[1], "width": bounding_box_xywh[2], "height": bounding_box_xywh[3]},
