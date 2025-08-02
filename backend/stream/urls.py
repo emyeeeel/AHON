@@ -1,7 +1,7 @@
-from django.urls import path
-from . import views
+# from django.urls import path
+# from . import views
 
-urlpatterns = [
-    path('stream/', views.ImageStreamView.as_view(), name='image-stream'),
-    path('status/', views.ImageStatusView.as_view(), name='image-status'),
-]
+# urlpatterns = [
+#     path('stream/', views.ImageStreamView.as_view(), name='image-stream'),
+#     path('status/', views.ImageStatusView.as_view(), name='image-status'),
+# ]

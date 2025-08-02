@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '*',
-    '192.168.1.4'
+    '192.168.1.6'
 ]
 CORS_ALLOW_ALL_ORIGINS = True 
 CORS_ALLOW_CREDENTIALS = True
@@ -38,6 +38,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://192.168.1.4:8100",  # Your local IP
     "http://10.0.2.2:8100",  # Android emulator dev server
     "http://10.0.2.2",  # Android emulator dev server
+    "http://192.168.1.6:8100",  # Your local IP
 ]
 
 
@@ -51,11 +52,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'corsheaders',
     'detection',
     'locator',
     'mission',
     'stream',
-    'corsheaders'
+    
 ]
 
 MIDDLEWARE = [

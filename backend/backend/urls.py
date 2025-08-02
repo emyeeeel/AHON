@@ -17,16 +17,22 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
-from detection.views import detect_pose_view
-from stream.views import video_feed_view
+from detection.views import detect_pose_view, ping_view
+from stream.views import video_feed_view, stream_page_view, detection_data_stream_view
+from mission.views import mission_list_view 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     # path('api/', include('stream.urls')),
-    
 
+    path('mission-api/missions/', mission_list_view, name='mission-list'),
+    
     # API endpoint for detection
     path('api/detect_pose/', detect_pose_view, name='detect_pose'),
 
     path('api/video_feed/', video_feed_view, name='video_feed'),
+
+    path('api/detection_data/', detection_data_stream_view, name='detection_data'),
+
+    path('stream_page/', stream_page_view, name='stream_page'),
 ]
