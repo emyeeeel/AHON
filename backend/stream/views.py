@@ -7,6 +7,7 @@ import threading
 from django.http import StreamingHttpResponse
 from django.shortcuts import render
 from detection.views import process_frame_with_tracking
+import base64
 
 # --- Global variables to share data from the camera thread ---
 frame_lock = threading.Lock()
@@ -41,6 +42,8 @@ def camera_worker_thread():
         if not ret:
             break
 
+        clean_frame = frame.copy()
+
         detections = process_frame_with_tracking(frame)
         person_count = len(detections)
         
@@ -72,10 +75,17 @@ def camera_worker_thread():
                 cv2.putText(frame, label, (x1, y1 - 5), FONT, 0.6, TEXT_COLOR, 2)
         
         _, jpg_buffer = cv2.imencode('.jpg', frame)
+
+        _, clean_jpg_buffer = cv2.imencode('.jpg', clean_frame)
+        snapshot_b64 = base64.b64encode(clean_jpg_buffer).decode('utf-8')
         
         with frame_lock:
             output_frame = jpg_buffer.tobytes()
-            detection_data_json = json.dumps({"personCount": person_count})
+            detection_data_json = json.dumps({
+            "personCount": person_count,
+            "snapshot": snapshot_b64,
+            "detections": detections
+        })
     
     cap.release()
 

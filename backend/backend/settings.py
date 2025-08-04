@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '*',
-    '192.168.1.6'
+    '172.29.14.61'
 ]
 CORS_ALLOW_ALL_ORIGINS = True 
 CORS_ALLOW_CREDENTIALS = True
@@ -38,7 +38,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://192.168.1.4:8100",  # Your local IP
     "http://10.0.2.2:8100",  # Android emulator dev server
     "http://10.0.2.2",  # Android emulator dev server
-    "http://192.168.1.6:8100",  # Your local IP
+    "http://172.29.14.61:8100",  # Your local IP (change this depending on your local network)
 ]
 
 
