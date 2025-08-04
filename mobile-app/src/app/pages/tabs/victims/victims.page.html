@@ -1,28 +1,50 @@
 <app-header></app-header>
 
 <ion-content [fullscreen]="true">
-  <app-victim-filter></app-victim-filter>  
-  
-  <!-- Debug view (remove this in production) -->
-    <!-- <p>{{currentMission | json}}</p>
-  <p>{{currentMission.id}}</p> -->
-  <!-- <div class="debug-section">
-    <h3>Raw Data (Debug):</h3>
-    <pre>{{ victimsWithDetections | json }}</pre>
-  </div> -->
+  <div class="header-info">
+    <h2>Detected Victims</h2>
+    <p>{{ detectedVictims.length }} people detected</p>
+  </div>
 
-  <!-- Victims list view -->
-    <div  class="victims-container">
-      <div *ngFor="let item of victims; let i = index" class="victim-wrapper">
-        <div  class="ms-3 me-3 my-4">
-          <app-victim-info-card [victim]="item"></app-victim-info-card>
-        </div>
-      </div>
-      
-      <div *ngIf="victims.length === 0" class="no-victims">
-        <ion-text color="medium">No victims found for this mission</ion-text>
-      </div>
+  <div class="victims-container">
+    <div *ngIf="snapshotImage" class="snapshot-container">
+      <img [src]="snapshotImage" alt="Last frame snapshot" />
     </div>
 
-  <div class="py-4"></div>
+    <div *ngFor="let victim of detectedVictims" class="victim-card-wrapper">
+      <ion-card class="victim-card">
+        <ion-card-content>
+          <div class="card-header">
+            <span class="victim-id">Victim ID: {{ victim.track_id }}</span>
+          </div>
+
+          <div class="details-grid">
+            <div class="detail-item">
+              <ion-icon name="body-outline" class="detail-icon"></ion-icon>
+              <span>Unknown</span>
+            </div>
+
+            <div class="detail-item">
+              <ion-icon name="pulse-outline" class="detail-icon"></ion-icon>
+              <span>Unknown</span>
+            </div>
+
+            <div class="detail-item">
+              <ion-icon name="location-outline" class="detail-icon"></ion-icon>
+              <span>{{ victim.position_in_pixels[0] | number:'1.0-0' }}, {{ victim.position_in_pixels[1] | number:'1.0-0' }}</span>
+            </div>
+          </div>
+
+          <div class="confidence-section">
+            <ion-progress-bar [value]="victim.confidence"></ion-progress-bar>
+            <p>Person Detection Confidence: {{ formatConfidence(victim.confidence) }}</p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngIf="detectedVictims.length === 0" class="no-victims">
+      <p>No victims detected in the last snapshot.</p>
+    </div>
+  </div>
 </ion-content>
